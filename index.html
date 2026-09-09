@@ -14,6 +14,7 @@
         :root { --cyan: #00f7ff; --purple: #8b5cf6; --emerald: #10ff9f; }
         
         body { margin: 0; background: #020204; color: #fff; font-family: 'Inter', sans-serif; overflow: hidden; height: 100vh; }
+        
         #bg-canvas { position: fixed; inset: 0; z-index: -2; }
         #cinematic-canvas { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
 
@@ -48,7 +49,7 @@
 
         #profile-img { 
             width: 100%; height: 100%; object-fit: cover; opacity: 0; 
-            transform: scale(1.1); filter: brightness(1.2); transition: opacity 0.5s;
+            transform: scale(1.1); transition: opacity 0.5s;
         }
 
         #glitch-overlay { position: absolute; inset: 0; background: var(--cyan); opacity: 0; z-index: 20; pointer-events: none; }
@@ -62,24 +63,25 @@
 <canvas id="bg-canvas"></canvas>
 <canvas id="cinematic-canvas"></canvas>
 
-<!-- VAULT -->
+<!-- VAULT SECTION -->
 <div id="vault-overlay" onclick="executePipeline()">
     <div class="vault-door" id="door">
         <div class="vault-lock"></div>
         <div class="absolute text-center">
             <h2 class="orbitron text-cyan-400 font-bold text-2xl">DK.SYS</h2>
-            <p class="text-[10px] tracking-[0.4em] mt-2 text-zinc-500 uppercase font-bold">Initiate Breach</p>
+            <p class="text-[10px] tracking-[0.4em] mt-2 text-zinc-500 uppercase font-bold">Initiate Stride</p>
         </div>
     </div>
-    <div id="status-text" class="mt-10 orbitron text-zinc-500 text-[10px] tracking-[0.6em] uppercase">Authentication Required</div>
+    <div id="status-text" class="mt-10 orbitron text-zinc-500 text-[10px] tracking-[0.6em] uppercase">Ready for Authentication</div>
 </div>
 
+<!-- MAIN PORTFOLIO -->
 <main id="main-content" class="opacity-0 invisible relative">
     <div class="max-w-7xl mx-auto px-6 py-12 lg:py-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             
-            <!-- Hero Card -->
-            <div id="hero-card-container" class="relative">
+            <!-- Hero Card Container (Fixed Center Alignment) -->
+            <div id="hero-card-container" class="relative max-w-[400px] lg:max-w-none mx-auto w-full">
                 <div class="neon-border"></div>
                 <div class="hero-card">
                     <div id="glitch-overlay"></div>
@@ -87,6 +89,7 @@
                 </div>
             </div>
 
+            <!-- Content Area -->
             <div class="text-center lg:text-left">
                 <div class="glass inline-block px-4 py-2 rounded-full text-emerald-400 text-[10px] font-bold tracking-widest orbitron mb-6">
                     ● OPERATIONS ARCHITECT ACTIVE
@@ -99,48 +102,50 @@
                 </div>
                 
                 <div class="grid grid-cols-2 lg:flex gap-3 mb-10">
-                    <a href="https://wa.me/deepaak.ai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-emerald-400 text-center">WHATSAPP</a>
-                    <a href="https://t.me/deepaakai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-cyan-400 text-center">TELEGRAM</a>
-                    <a href="https://www.instagram.com/deepaak.ai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-pink-500 text-center">INSTAGRAM</a>
-                    <a href="https://x.com/deepaakai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-blue-400 text-center">X.COM</a>
+                    <a href="https://wa.me/deepaak.ai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-emerald-400 text-center uppercase tracking-widest transition-all">WhatsApp</a>
+                    <a href="https://t.me/deepaakai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-cyan-400 text-center uppercase tracking-widest transition-all">Telegram</a>
+                    <a href="https://www.instagram.com/deepaak.ai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-pink-500 text-center uppercase tracking-widest transition-all">Instagram</a>
+                    <a href="https://x.com/deepaakai" target="_blank" class="glass py-4 px-6 rounded-xl text-[10px] font-bold orbitron hover:text-blue-400 text-center uppercase tracking-widest transition-all">X.com</a>
                 </div>
             </div>
         </div>
 
+        <!-- Expertise Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24">
             <div class="glass p-8 rounded-[2rem] md:col-span-2">
                 <h3 class="orbitron text-cyan-400 text-lg mb-8 uppercase tracking-widest">Polymath Operations</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs">
-                    <div><h4 class="font-bold text-white mb-2">Hardware Infra</h4><p class="text-zinc-500 leading-relaxed">System Architecture, Diagnostics, & Enterprise Networks.</p></div>
-                    <div><h4 class="font-bold text-white mb-2">Operations</h4><p class="text-zinc-500 leading-relaxed">High-Scale Compliance, Portals, & Verification.</p></div>
-                    <div><h4 class="font-bold text-white mb-2">Data Solutions</h4><p class="text-zinc-500 leading-relaxed">Bulk Data Processing, Catalog Ops, & Optimization.</p></div>
+                    <div><h4 class="font-bold text-white mb-2">Hardware Infra</h4><p class="text-zinc-500 leading-relaxed">System Architecture, Enterprise PC Diagnostics, & Networking.</p></div>
+                    <div><h4 class="font-bold text-white mb-2">Operations</h4><p class="text-zinc-500 leading-relaxed">High-Scale Compliance, Service Portals, & Rapid Verification.</p></div>
+                    <div><h4 class="font-bold text-white mb-2">Data Solutions</h4><p class="text-zinc-500 leading-relaxed">Bulk Processing, Catalog Ops, & Listing Optimization.</p></div>
                 </div>
             </div>
             <div class="glass p-8 rounded-[2rem] flex flex-col justify-center items-center border-emerald-500/20">
                 <div class="text-6xl font-black text-emerald-400">99.9%</div>
-                <div class="orbitron text-[10px] mt-2 text-zinc-500 tracking-widest">ACCURACY METRIC</div>
+                <div class="orbitron text-[10px] mt-2 text-zinc-500 tracking-widest uppercase">Precision Rate</div>
             </div>
         </div>
 
-        <!-- Support -->
-        <div class="mt-24 glass p-10 lg:p-16 rounded-[3rem] text-center max-w-xl mx-auto">
+        <!-- Payment Module -->
+        <div class="mt-24 glass p-10 lg:p-16 rounded-[3rem] text-center max-w-xl mx-auto border-white/5">
             <h3 class="orbitron text-cyan-400 text-xl mb-8 uppercase">Support Operations</h3>
             <div class="bg-white p-3 rounded-2xl inline-block mb-8 shadow-2xl">
-                <img src="qr.png" alt="UPI QR" class="w-48 h-48 lg:w-56 lg:h-56">
+                <img src="qr.png" alt="UPI QR" class="w-48 h-48 lg:w-56 lg:h-56 object-contain">
             </div>
             <p class="text-zinc-500 text-xs font-mono mb-6 tracking-widest">deepaakai@dbs</p>
-            <button onclick="copyUPI(this)" class="glass px-12 py-4 rounded-2xl text-[10px] font-bold orbitron text-emerald-400 border-emerald-500/20 active:bg-emerald-500/10">
+            <button onclick="copyUPI(this)" class="glass px-12 py-4 rounded-2xl text-[10px] font-bold orbitron text-emerald-400 border-emerald-500/20 active:bg-emerald-500/10 transition-all">
                 COPY UPI ID
             </button>
         </div>
         
         <footer class="text-center py-20 text-zinc-700 orbitron text-[9px] tracking-[0.5em]">
-            © DEEPAAK KUMAR // SYSTEM PROTOCOL V4.0.0
+            © DEEPAAK KUMAR // POLYMATH OPS V4.0.0
         </footer>
     </div>
 </main>
 
 <script>
+/** ENGINE CONFIGURATION **/
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const clock = new THREE.Clock();
 let mixer, avatar, avatarActions = {};
@@ -157,7 +162,7 @@ cineCam.position.set(0, 0, 10);
 const cineRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cinematic-canvas'), alpha: true, antialias: true });
 cineRenderer.setSize(window.innerWidth, window.innerHeight);
 
-cineScene.add(new THREE.AmbientLight(0xffffff, 1));
+cineScene.add(new THREE.AmbientLight(0xffffff, 1.1));
 const light = new THREE.DirectionalLight(0x00f7ff, 2); light.position.set(5, 5, 5); cineScene.add(light);
 
 const stars = new THREE.Points(
@@ -166,18 +171,21 @@ const stars = new THREE.Points(
 );
 bgScene.add(stars);
 
+/** THE CATWALK PIPELINE **/
 async function executePipeline() {
     if (audioCtx.state === 'suspended') audioCtx.resume();
     const status = document.getElementById('status-text');
     const door = document.getElementById('door');
 
+    // 1-2: Mechanical Knocks
     for (let i = 1; i <= 3; i++) {
         await new Promise(r => setTimeout(r, 600));
         playKnock(150 - (i * 15));
         gsap.to(door, { x: (i % 2 === 0 ? 10 : -10), duration: 0.1, yoyo: true, repeat: 1 });
-        status.textContent = `Breaching node_${i}...`;
+        status.textContent = `Breaching Security Node ${i}/3`;
     }
 
+    // 3: The Shutter Explosion
     await new Promise(r => setTimeout(r, 800));
     playExplosion();
     gsap.to("#vault-overlay", { opacity: 0, duration: 1, onComplete: () => {
@@ -186,38 +194,70 @@ async function executePipeline() {
         gsap.to("#main-content", { opacity: 1, duration: 1 });
     }});
 
+    // 4-7: Catwalk Execution
     if (avatar) {
         avatar.visible = true;
-        avatar.position.set(0, -5, 8);
-        if (avatarActions.walk) avatarActions.walk.play();
+        const isMobile = window.innerWidth < 1024;
+        
+        // GROUNDED START (Fixed X from -15 to -7.5 for immediate visibility)
+        avatar.position.set(-7.5, isMobile ? -1.2 : -1.6, 1); 
+        avatar.rotation.y = Math.PI / 2; // Facing Right
+        avatar.scale.set(1.5, 1.5, 1.5);
+        
+        if (avatarActions.walk) {
+            avatarActions.walk.play();
+            avatarActions.walk.timeScale = 1.15;
+        }
 
         const tl = gsap.timeline();
         const rect = document.getElementById('hero-card-container').getBoundingClientRect();
+        
+        // 3D coordinate projection
         const screenX = (rect.left + rect.width / 2) / window.innerWidth * 2 - 1;
         const screenY = -((rect.top + rect.height / 2) / window.innerHeight * 2 - 1);
-        
-        const worldX = screenX * cineCam.aspect * 4.2;
+        const worldX = screenX * cineCam.aspect * 4.2; 
         const worldY = screenY * 4.2;
 
-        tl.to(avatar.position, { x: worldX * 0.8, y: worldY - 1.5, z: 0, duration: 3, ease: "power2.out" });
-        tl.to(avatar.scale, { x: 1.5, y: 1.5, z: 1.5, duration: 3 }, "<");
+        // Step 5: Horizontal Stride
+        tl.to(avatar.position, { 
+            x: worldX * 0.8, 
+            duration: 3.5, 
+            ease: "power1.inOut" 
+        });
 
-        // ✅ एनीमेशन क्रॉसफ़ेड फ़िक्स
+        // Step 6: Turn & Settle
+        tl.to(avatar.rotation, { 
+            y: 0, // Face user
+            duration: 0.8, 
+            ease: "power2.inOut" 
+        }, "-=0.8");
+
         tl.to({}, { duration: 0.5, onStart: () => {
             if (avatarActions.walk && avatarActions.idle) {
                 avatarActions.idle.reset().play();
-                avatarActions.walk.crossFadeTo(avatarActions.idle, 0.5, true);
+                avatarActions.walk.crossFadeTo(avatarActions.idle, 0.6, true);
             }
-        }});
+        }}, "-=0.6");
 
-        tl.to(avatar.position, { x: worldX, y: worldY + 0.5, z: -2.5, duration: 1.2, ease: "expo.inOut" });
+        tl.to(avatar.position, { 
+            x: worldX, 
+            y: worldY + 0.5, 
+            z: -2.5, 
+            duration: 1.2, 
+            ease: "expo.inOut" 
+        });
 
-        tl.to("#glitch-overlay", { opacity: 1, duration: 0.1, delay: 0.3, onComplete: () => {
-            avatar.visible = false;
-            document.getElementById('profile-img').style.opacity = "1";
-            gsap.to("#profile-img", { scale: 1, duration: 0.8, ease: "back.out" });
-            finalizeActiveState();
-        }});
+        // Step 7: Morph Glitch
+        tl.to("#glitch-overlay", { 
+            opacity: 1, 
+            duration: 0.1, 
+            onComplete: () => {
+                avatar.visible = false;
+                document.getElementById('profile-img').style.opacity = "1";
+                gsap.to("#profile-img", { scale: 1, duration: 0.8, ease: "back.out" });
+                finalizeActiveState();
+            }
+        });
         tl.to("#glitch-overlay", { opacity: 0, duration: 0.6 });
     } else {
         document.getElementById('profile-img').style.opacity = "1";
@@ -225,6 +265,7 @@ async function executePipeline() {
     }
 }
 
+/** FINAL UI ACTIVATION **/
 function finalizeActiveState() {
     document.body.style.overflow = "auto";
     document.body.style.height = "auto";
@@ -232,14 +273,19 @@ function finalizeActiveState() {
     const roles = ["Operations Architect", "Systems Engineer", "Data Specialist"];
     let rIdx = 0;
     const el = document.getElementById('dynamic-role');
-    setInterval(() => {
-        gsap.to(el, { opacity: 0, y: 10, duration: 0.5, onComplete: () => {
-            el.textContent = roles[rIdx];
-            rIdx = (rIdx + 1) % roles.length;
-            gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
-        }});
-    }, 3000);
+    
+    // Role Rotation (Fixed Guard)
+    if (el) {
+        setInterval(() => {
+            gsap.to(el, { opacity: 0, y: 10, duration: 0.5, onComplete: () => {
+                el.textContent = roles[rIdx];
+                rIdx = (rIdx + 1) % roles.length;
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.5 });
+            }});
+        }, 3000);
+    }
 
+    // Card mouse tracking
     window.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 15;
         const y = (e.clientY / window.innerHeight - 0.5) * 15;
@@ -247,6 +293,7 @@ function finalizeActiveState() {
     });
 }
 
+/** UTILITIES **/
 function playKnock(freq) {
     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
     o.frequency.setValueAtTime(freq, audioCtx.currentTime);
@@ -268,6 +315,7 @@ function playExplosion() {
     s.start();
 }
 
+/** ASSET LOADING **/
 new THREE.GLTFLoader().load('avatar.glb', (gltf) => {
     avatar = gltf.scene; avatar.visible = false; cineScene.add(avatar);
     mixer = new THREE.AnimationMixer(avatar);
@@ -276,7 +324,7 @@ new THREE.GLTFLoader().load('avatar.glb', (gltf) => {
         avatarActions.walk = mixer.clipAction(clips.find(c => c.name.toLowerCase().includes('walk')) || clips[0]);
         avatarActions.idle = mixer.clipAction(clips.find(c => c.name.toLowerCase().includes('idle') || c.name.toLowerCase().includes('sit')) || clips[clips.length-1]);
     }
-});
+}, undefined, (e) => console.error("Avatar error:", e));
 
 function animate() {
     requestAnimationFrame(animate);
