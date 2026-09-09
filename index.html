@@ -34,7 +34,7 @@
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* Neon Border Animation */
+        /* Profile Card & Neon Gradient */
         .neon-card {
             position: relative; border-radius: 24px; padding: 2px;
             background: linear-gradient(45deg, #00f7ff, #8b5cf6, #10ff9f);
@@ -46,7 +46,7 @@
 
         .avatar-card { height: 600px; overflow: hidden; position: relative; background: #050505; border-radius: 22px; }
         #avatarViewport { position: absolute; inset: 0; z-index: 5; }
-        .profile-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .profile-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; pointer-events: none; }
         
         .copy-success { color: #10ff9f !important; border-color: #10ff9f !important; }
     </style>
@@ -64,7 +64,7 @@
             <p class="text-[10px] tracking-[0.3em] mt-2 text-zinc-500">CLICK TO BREACH</p>
         </div>
     </div>
-    <div id="status-text" class="mt-12 orbitron text-zinc-600 text-sm tracking-widest">ENCRYPTED PORTAL</div>
+    <div id="status-text" class="mt-12 orbitron text-zinc-600 text-sm tracking-widest uppercase">Encrypted Portal Locked</div>
 </div>
 
 <main id="main-content" class="opacity-0">
@@ -72,10 +72,11 @@
     <section class="min-h-screen flex items-center p-6">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
             
-            <!-- Left: 3D Avatar Card -->
+            <!-- Left: Centered 3D Avatar Card -->
             <div class="neon-card">
                 <div class="avatar-card">
-                    <img src="profile.png" alt="Profile" class="profile-fallback">
+                    <!-- Stylish Background Blend -->
+                    <img src="profile.png" alt="Deepaak Kumar Background" class="profile-fallback">
                     <div id="avatarViewport"></div>
                 </div>
             </div>
@@ -86,11 +87,11 @@
                     ● AVAILABLE FOR OPERATIONS & TECH LEADERSHIP
                 </div>
                 <h1 class="text-7xl font-black orbitron mb-2">Deepaak <span class="text-cyan-400">Kumar</span></h1>
-                <h2 id="dynamic-role" class="text-2xl text-zinc-400 h-8"></h2>
+                <h2 id="dynamic-role" class="text-2xl text-zinc-400 h-8 orbitron uppercase tracking-tighter"></h2>
                 
                 <p class="mt-8 text-zinc-400 leading-relaxed text-lg max-w-xl">
                     Polymath bridging hardware architecture, enterprise operations, and high-volume data ecosystems. 
-                    Building resilient automated systems for the 2026 technical landscape.
+                    Architecting resilient automated systems for the 2026 technical landscape.
                 </p>
 
                 <div class="flex gap-4 flex-wrap mt-10">
@@ -123,25 +124,23 @@
                     </div>
                 </div>
             </div>
-            <div class="glass p-8 rounded-3xl text-center flex flex-col justify-center">
+            <div class="glass p-8 rounded-3xl text-center flex flex-col justify-center border-emerald-500/10">
                 <div class="text-5xl font-black text-emerald-400">99.9%</div>
                 <div class="orbitron text-xs mt-2 text-zinc-500 tracking-tighter">DATA ACCURACY RATE</div>
             </div>
         </div>
     </section>
 
-    <!-- BUY ME A COFFEE / SUPPORT SECTION -->
+    <!-- Support Section -->
     <section class="max-w-7xl mx-auto p-8 mb-20">
         <div class="glass p-10 rounded-[3rem] text-center max-w-lg mx-auto border-cyan-500/20">
             <h3 class="orbitron text-cyan-400 text-2xl mb-2">Support My Work</h3>
             <p class="text-zinc-500 text-sm mb-8 tracking-widest">FUEL THE POLYMATH OPERATIONS</p>
             
-            <!-- QR Image -->
             <div class="bg-white p-3 rounded-2xl inline-block mb-6 shadow-[0_0_30px_rgba(0,247,255,0.2)]">
                 <img src="qr.png" alt="Scan to Pay" class="w-56 h-56 object-contain">
             </div>
 
-            <!-- UPI Display -->
             <div class="space-y-4">
                 <div class="text-zinc-400 text-sm">
                     UPI ID: <span class="text-white font-mono font-bold tracking-wider">deepaakai@dbs</span>
@@ -160,7 +159,7 @@
 </main>
 
 <script>
-/** 1. AUDIO SYNTHESIS ENGINE **/
+/** 1. AUDIO SYNTHESIS ENGINE (Web Audio API) **/
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 function playKnock(freq, duration) {
     const osc = audioCtx.createOscillator();
@@ -250,30 +249,43 @@ async function breachVault() {
     gsap.to(camera.position, { z: 25, duration: 0.1, yoyo: true, repeat: 5 });
 }
 
-/** 4. 3D AVATAR LOADING **/
+/** 4. AVATAR VIEWPORT - BOX3 CENTERING & FRAMING **/
 const aScene = new THREE.Scene();
 const aCam = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-aCam.position.set(0, 1.2, 3.5);
+// Camera fixed at portrait framing (Upper Body/Face)
+aCam.position.set(0, 0.4, 2.0);
+aCam.lookAt(0, 0.35, 0);
+
 const aRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 document.getElementById('avatarViewport').appendChild(aRenderer.domElement);
 
-aScene.add(new THREE.AmbientLight(0xffffff, 1));
-const light2 = new THREE.DirectionalLight(0x00f7ff, 2); light2.position.set(2,2,5); aScene.add(light2);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); aScene.add(ambientLight);
+const spotLight = new THREE.DirectionalLight(0x00f7ff, 2.0); spotLight.position.set(2, 2, 5); aScene.add(spotLight);
 
 let mixer, avatar;
-new THREE.GLTFLoader().load('avatar.glb', (gltf) => {
+const loader = new THREE.GLTFLoader();
+loader.load('avatar.glb', (gltf) => {
     avatar = gltf.scene;
-    avatar.position.y = -1.5;
-    avatar.scale.set(1.4, 1.4, 1.4);
     aScene.add(avatar);
+
+    // DYNAMIC BOX3 CENTERING LOGIC
+    const box = new THREE.Box3().setFromObject(avatar);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+
+    avatar.position.x += (avatar.position.x - center.x);
+    avatar.position.y += (avatar.position.y - center.y) + 0.15; // Centered with slight upward lift for face focus
+    avatar.position.z += (avatar.position.z - center.z);
+
     if(gltf.animations.length) {
         mixer = new THREE.AnimationMixer(avatar);
         mixer.clipAction(gltf.animations[0]).play();
     }
-    document.querySelector('.profile-fallback').style.display = 'none';
+}, undefined, (e) => {
+    console.error("Avatar failed to load automatically. Showing fallback.");
 });
 
-/** 5. INTERACTIVE LOGIC **/
+/** 5. DYNAMIC UI & ANIMATION LOOP **/
 const roles = ["OPERATIONS ARCHITECT", "SYSTEMS ENGINEER", "DATA SPECIALIST"];
 let roleIdx = 0;
 function rotateRoles() {
@@ -302,25 +314,33 @@ function copyUPI(btn) {
 
 window.addEventListener('mousemove', (e) => {
     if(avatar) {
-        const x = (e.clientX / window.innerWidth - 0.5) * 0.5;
-        const y = (e.clientY / window.innerHeight - 0.5) * 0.2;
-        gsap.to(avatar.rotation, { y: x, x: y, duration: 1 });
+        const x = (e.clientX / window.innerWidth - 0.5) * 0.4;
+        const y = (e.clientY / window.innerHeight - 0.5) * 0.15;
+        gsap.to(avatar.rotation, { y: x, x: y, duration: 1.2 });
     }
 });
 
 const clock = new THREE.Clock();
 function animate() {
     requestAnimationFrame(animate);
-    if(mixer) mixer.update(clock.getDelta());
-    stars.rotation.y += 0.001;
+    const delta = clock.getDelta();
+    if(mixer) mixer.update(delta);
+    
+    stars.rotation.y += 0.0005;
+    
     if(explosionParticles) {
         const pos = explosionParticles.geometry.attributes.position.array;
         const vels = explosionParticles.userData.velocities;
-        for(let i=0; i<800*3; i++) { pos[i] += vels[i]; vels[i] *= 0.98; }
+        for(let i=0; i<800*3; i++) {
+            pos[i] += vels[i];
+            vels[i] *= 0.98;
+        }
         explosionParticles.geometry.attributes.position.needsUpdate = true;
         explosionParticles.material.opacity -= 0.01;
     }
+
     renderer.render(scene, camera);
+    
     const container = document.getElementById('avatarViewport');
     if(container.clientWidth > 0) {
         aCam.aspect = container.clientWidth / container.clientHeight;
