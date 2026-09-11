@@ -6,7 +6,6 @@
     <title>Deepaak Kumar | Polymath Ops V4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
@@ -27,7 +26,6 @@
         }
 
         #bg-canvas { position: fixed; inset: 0; z-index: -2; }
-        #cinematic-canvas { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
 
         .orbitron { font-family: 'Orbitron', sans-serif; }
         .mono { font-family: 'JetBrains Mono', monospace; }
@@ -49,18 +47,38 @@
             transform: translateY(-2px);
         }
 
-        #vault-overlay {
-            position: fixed; inset: 0; z-index: 100; background: #000;
+        /* Cyber Loading Screen */
+        #loader-overlay {
+            position: fixed; inset: 0; z-index: 100; background: #020204;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer;
         }
-        .vault-door {
-            width: 260px; height: 260px; border: 8px solid #111; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            position: relative; box-shadow: 0 0 50px rgba(0, 247, 255, 0.1);
+
+        .loader-container {
+            width: 90%;
+            max-width: 420px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(10, 10, 15, 0.85);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            box-shadow: 0 0 50px rgba(0, 247, 255, 0.08);
         }
-        .vault-lock { width: 85%; height: 85%; border: 2px dashed var(--cyan); border-radius: 50%; animation: rotate 15s linear infinite; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .progress-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--emerald));
+            box-shadow: 0 0 12px var(--cyan);
+            transition: width 0.15s ease-out;
+        }
 
         .hero-card {
             position: relative; border-radius: 32px; overflow: hidden;
@@ -77,10 +95,7 @@
 
         #profile-img {
             width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
-            opacity: 0; transform: scale(1.1); transition: opacity 0.5s;
         }
-
-        #glitch-overlay { position: absolute; inset: 0; background: var(--cyan); opacity: 0; z-index: 20; pointer-events: none; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #050508; }
@@ -91,18 +106,24 @@
 <body>
 
 <canvas id="bg-canvas"></canvas>
-<canvas id="cinematic-canvas"></canvas>
 
-<!-- VAULT SECTION -->
-<div id="vault-overlay" onclick="executePipeline()">
-    <div class="vault-door" id="door">
-        <div class="vault-lock"></div>
-        <div class="absolute text-center">
-            <h2 class="orbitron text-cyan-400 font-bold text-2xl tracking-wider">DK.SYS</h2>
-            <p class="text-[10px] tracking-[0.4em] mt-2 text-zinc-500 uppercase font-bold">Initiate Stride</p>
+<!-- HIGH-TECH LOADER SECTION -->
+<div id="loader-overlay">
+    <div class="loader-container">
+        <div class="flex justify-between items-center mb-4">
+            <span class="orbitron text-cyan-400 font-bold tracking-widest text-sm">DK.SYS // BOOT</span>
+            <span id="load-pct" class="mono text-emerald-400 font-bold text-sm">0%</span>
+        </div>
+        
+        <div class="progress-track mb-4">
+            <div id="progress-bar" class="progress-fill"></div>
+        </div>
+
+        <div class="flex justify-between items-center text-[10px] mono text-zinc-500">
+            <span id="loader-status" class="tracking-widest uppercase">INITIALIZING KERNEL...</span>
+            <span class="tracking-widest">V4.0.0</span>
         </div>
     </div>
-    <div id="status-text" class="mt-10 orbitron text-zinc-500 text-[10px] tracking-[0.6em] uppercase">Ready for Authentication</div>
 </div>
 
 <!-- MAIN PORTFOLIO -->
@@ -116,7 +137,6 @@
             <div id="hero-card-container" class="relative max-w-[380px] lg:max-w-none mx-auto w-full lg:col-span-5">
                 <div class="neon-border"></div>
                 <div class="hero-card shadow-2xl">
-                    <div id="glitch-overlay"></div>
                     <img src="profile.png" id="profile-img" alt="Deepaak Kumar">
                 </div>
             </div>
@@ -144,7 +164,7 @@
                 <!-- Social & Direct Channels Grid -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0 mb-6">
                     
-                    <!-- WhatsApp (Matching Glassmorphism Style) -->
+                    <!-- WhatsApp -->
                     <a href="https://wa.me/message/6VJKPERNMSEIF1?src=qr" target="_blank" class="glass-btn p-3 rounded-2xl flex items-center justify-center gap-2.5 text-emerald-400 group">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                         <span class="orbitron text-[11px] font-bold tracking-wider">WHATSAPP</span>
@@ -260,140 +280,76 @@
 </main>
 
 <script>
-/** ENGINE CONFIGURATION **/
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const clock = new THREE.Clock();
-let mixer, avatar, avatarActions = {};
-
-// Background Stars Scene
+/** BACKGROUND 3D STARS **/
 const bgScene = new THREE.Scene();
 const bgCam = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 bgCam.position.z = 30;
 const bgRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
 bgRenderer.setSize(window.innerWidth, window.innerHeight);
 
-// Cinematic Foreground Model Scene
-const cineScene = new THREE.Scene();
-const cineCam = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-cineCam.position.set(0, 0, 10);
-const cineRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cinematic-canvas'), alpha: true, antialias: true });
-cineRenderer.setSize(window.innerWidth, window.innerHeight);
-
-cineScene.add(new THREE.AmbientLight(0xffffff, 1.1));
-const light = new THREE.DirectionalLight(0x00f7ff, 2); 
-light.position.set(5, 5, 5); 
-cineScene.add(light);
-
-// Starfield Generator
 const stars = new THREE.Points(
     new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(2000 * 3).map(() => (Math.random() - 0.5) * 100), 3)),
     new THREE.PointsMaterial({ size: 0.05, color: 0x00f7ff })
 );
 bgScene.add(stars);
 
-/** THE CATWALK PIPELINE **/
-async function executePipeline() {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const status = document.getElementById('status-text');
-    const door = document.getElementById('door');
-
-    // 1-2: Mechanical Knocks
-    for (let i = 1; i <= 3; i++) {
-        await new Promise(r => setTimeout(r, 600));
-        playKnock(150 - (i * 15));
-        gsap.to(door, { x: (i % 2 === 0 ? 10 : -10), duration: 0.1, yoyo: true, repeat: 1 });
-        status.textContent = `Breaching Security Node ${i}/3`;
-    }
-
-    // 3: The Shutter Explosion
-    await new Promise(r => setTimeout(r, 800));
-    playExplosion();
-    gsap.to("#vault-overlay", { 
-        opacity: 0, 
-        duration: 1, 
-        onComplete: () => {
-            document.getElementById('vault-overlay').remove();
-            document.getElementById('main-content').classList.remove('invisible');
-            gsap.to("#main-content", { opacity: 1, duration: 1 });
-        }
-    });
-
-    // 4-7: Catwalk Execution
-    if (avatar) {
-        avatar.visible = true;
-        const isMobile = window.innerWidth < 1024;
-
-        avatar.position.set(-7.5, isMobile ? -1.2 : -1.6, 1);
-        avatar.rotation.y = Math.PI / 2; // Facing Right
-        avatar.scale.set(1.5, 1.5, 1.5);
-
-        if (avatarActions.walk) {
-            avatarActions.walk.play();
-            avatarActions.walk.timeScale = 1.15;
-        }
-
-        const tl = gsap.timeline();
-        const rect = document.getElementById('hero-card-container').getBoundingClientRect();
-
-        // 3D coordinate projection
-        const screenX = (rect.left + rect.width / 2) / window.innerWidth * 2 - 1;
-        const screenY = -((rect.top + rect.height / 2) / window.innerHeight * 2 - 1);
-        const worldX = screenX * cineCam.aspect * 4.2;
-        const worldY = screenY * 4.2;
-
-        // Horizontal Stride
-        tl.to(avatar.position, {
-            x: worldX * 0.8,
-            duration: 3.5,
-            ease: "power1.inOut"
-        });
-
-        // Turn & Settle
-        tl.to(avatar.rotation, {
-            y: 0,
-            duration: 0.8,
-            ease: "power2.inOut"
-        }, "-=0.8");
-
-        tl.to({}, { duration: 0.5, onStart: () => {
-            if (avatarActions.walk && avatarActions.idle) {
-                avatarActions.idle.reset().play();
-                avatarActions.walk.crossFadeTo(avatarActions.idle, 0.6, true);
-            }
-        }}, "-=0.6");
-
-        tl.to(avatar.position, {
-            x: worldX,
-            y: worldY + 0.5,
-            z: -2.5,
-            duration: 1.2,
-            ease: "expo.inOut"
-        });
-
-        // Morph Glitch to Photo
-        tl.to("#glitch-overlay", {
-            opacity: 1,
-            duration: 0.1,
-            onComplete: () => {
-                avatar.visible = false;
-                document.getElementById('profile-img').style.opacity = "1";
-                gsap.to("#profile-img", { scale: 1, duration: 0.8, ease: "back.out" });
-                finalizeActiveState();
-            }
-        });
-        tl.to("#glitch-overlay", { opacity: 0, duration: 0.6 });
-    } else {
-        document.getElementById('profile-img').style.opacity = "1";
-        finalizeActiveState();
-    }
+function animate() {
+    requestAnimationFrame(animate);
+    stars.rotation.y += 0.0006;
+    bgRenderer.render(bgScene, bgCam);
 }
+animate();
+
+/** REALISTIC HIGH-TECH LOADER PIPELINE **/
+window.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.getElementById('progress-bar');
+    const loadPct = document.getElementById('load-pct');
+    const loaderStatus = document.getElementById('loader-status');
+    
+    let progress = 0;
+    const stages = [
+        { at: 20, text: "MOUNTING CORE MODULES..." },
+        { at: 50, text: "VERIFYING SECURITY TOKENS..." },
+        { at: 75, text: "CALIBRATING INTERFACE..." },
+        { at: 95, text: "FINALIZING ACTIVE STATE..." }
+    ];
+
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 8) + 3;
+        if (progress > 100) progress = 100;
+
+        progressBar.style.width = progress + "%";
+        loadPct.textContent = progress + "%";
+
+        const currentStage = stages.filter(s => progress >= s.at).pop();
+        if (currentStage) {
+            loaderStatus.textContent = currentStage.text;
+        }
+
+        if (progress === 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                gsap.to("#loader-overlay", {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        document.getElementById('loader-overlay').remove();
+                        document.getElementById('main-content').classList.remove('invisible');
+                        gsap.to("#main-content", { opacity: 1, duration: 1 });
+                        finalizeActiveState();
+                    }
+                });
+            }, 300);
+        }
+    }, 60);
+});
 
 /** FINAL UI ACTIVATION **/
 function finalizeActiveState() {
     document.body.style.overflow = "auto";
     document.body.style.height = "auto";
 
-    // Dynamic Multi-Disciplinary Roles
     const roles = [
         "Remote Technical Specialist",
         "Data & Catalog Operations",
@@ -417,68 +373,13 @@ function finalizeActiveState() {
         }, 2800);
     }
 
-    // Interactive 3D tilt on card
+    // 3D Tilt Effect on Profile Card
     window.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 12;
         const y = (e.clientY / window.innerHeight - 0.5) * 12;
         gsap.to(".hero-card", { rotationY: x, rotationX: -y, duration: 1.2 });
     });
 }
-
-/** AUDIO SYNTHESIS UTILITIES **/
-function playKnock(freq) {
-    const o = audioCtx.createOscillator(); 
-    const g = audioCtx.createGain();
-    o.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.3);
-    g.gain.setValueAtTime(0.3, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-    o.connect(g); 
-    g.connect(audioCtx.destination);
-    o.start(); 
-    o.stop(audioCtx.currentTime + 0.3);
-}
-
-function playExplosion() {
-    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 1.5, audioCtx.sampleRate);
-    const d = buf.getChannelData(0); 
-    for(let i=0; i<buf.length; i++) d[i] = Math.random() * 2 - 1;
-    const s = audioCtx.createBufferSource(); 
-    s.buffer = buf;
-    const f = audioCtx.createBiquadFilter(); 
-    f.type = 'lowpass';
-    f.frequency.setValueAtTime(1000, audioCtx.currentTime);
-    f.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 1.2);
-    const g = audioCtx.createGain(); 
-    g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
-    s.connect(f); 
-    f.connect(g); 
-    g.connect(audioCtx.destination);
-    s.start();
-}
-
-/** ASSET LOADING **/
-new THREE.GLTFLoader().load('avatar.glb', (gltf) => {
-    avatar = gltf.scene; 
-    avatar.visible = false; 
-    cineScene.add(avatar);
-    mixer = new THREE.AnimationMixer(avatar);
-    const clips = gltf.animations;
-    if (clips && clips.length > 0) {
-        avatarActions.walk = mixer.clipAction(clips.find(c => c.name.toLowerCase().includes('walk')) || clips[0]);
-        avatarActions.idle = mixer.clipAction(clips.find(c => c.name.toLowerCase().includes('idle') || c.name.toLowerCase().includes('sit')) || clips[clips.length-1]);
-    }
-}, undefined, (e) => console.warn("GLB Loader notice:", e));
-
-function animate() {
-    requestAnimationFrame(animate);
-    const d = clock.getDelta();
-    if (mixer) mixer.update(d);
-    stars.rotation.y += 0.0006;
-    bgRenderer.render(bgScene, bgCam);
-    cineRenderer.render(cineScene, cineCam);
-}
-animate();
 
 function copyUPI(btn) {
     navigator.clipboard.writeText("deepaakai@dbs").then(() => {
@@ -497,9 +398,6 @@ window.addEventListener('resize', () => {
     bgCam.aspect = w/h; 
     bgCam.updateProjectionMatrix(); 
     bgRenderer.setSize(w, h);
-    cineCam.aspect = w/h; 
-    cineCam.updateProjectionMatrix(); 
-    cineRenderer.setSize(w, h);
 });
 </script>
 </body>
