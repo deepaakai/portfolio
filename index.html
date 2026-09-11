@@ -109,9 +109,11 @@
 
 <canvas id="bg-canvas"></canvas>
 
+<!-- TAP TO INITIALIZE & CYBER LOADER -->
 <div id="loader-overlay" onclick="startLoadingPipeline()">
     <div class="loader-container">
         
+        <!-- INITIAL TAP TRIGGER STATE -->
         <div id="tap-prompt" class="py-6">
             <div class="w-16 h-16 mx-auto mb-5 rounded-full border-2 border-cyan-400/50 flex items-center justify-center animate-pulse shadow-[0_0_25px_rgba(0,247,255,0.3)]">
                 <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -121,6 +123,7 @@
             <span class="text-[10px] mono text-zinc-500 tracking-[0.3em]">ENABLES SECURE AUDIO & ENVIRONMENT</span>
         </div>
 
+        <!-- ACTIVE LOADING PROGRESS BAR -->
         <div id="load-box" class="hidden">
             <div class="flex justify-between items-center mb-4">
                 <span class="orbitron text-cyan-400 font-bold tracking-widest text-sm">DK.SYS // BOOT</span>
@@ -140,11 +143,14 @@
     </div>
 </div>
 
+<!-- MAIN PORTFOLIO -->
 <main id="main-content" class="opacity-0 invisible relative">
     <div class="max-w-6xl mx-auto px-5 py-10 lg:py-20">
         
+        <!-- HERO SECTION -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
+            <!-- Hero Card Container -->
             <div id="hero-card-container" class="relative max-w-[420px] lg:max-w-none mx-auto w-full lg:col-span-5">
                 <div class="neon-border"></div>
                 <div class="hero-card shadow-2xl">
@@ -152,6 +158,7 @@
                 </div>
             </div>
 
+            <!-- Profile & Header Details -->
             <div class="text-center lg:text-left lg:col-span-7">
                 <div class="glass inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-emerald-400 text-xs font-bold tracking-widest orbitron mb-6 border-emerald-500/20">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span> OPERATIONS ARCHITECT ACTIVE
@@ -161,36 +168,44 @@
                     DEEPAAK <br><span class="text-cyan-400">KUMAR</span>
                 </h1>
 
+                <!-- Dynamic Rotating Roles -->
                 <div class="h-12 mb-6 flex items-center justify-center lg:justify-start">
                     <h2 id="dynamic-role" class="text-lg sm:text-xl lg:text-2xl text-zinc-300 orbitron uppercase tracking-wide font-semibold"></h2>
                 </div>
 
+                <!-- Bio Summary -->
                 <p class="text-zinc-300 text-sm sm:text-base max-w-lg mb-8 leading-relaxed mx-auto lg:mx-0">
                     Building resilient hardware infrastructure, streamlining high-volume digital workflows, and engineering remote operational efficiency.
                 </p>
 
+                <!-- Social Channels Grid -->
                 <div class="grid grid-cols-2 gap-3.5 max-w-lg mx-auto lg:mx-0 mb-6">
                     
+                    <!-- WhatsApp -->
                     <a href="https://wa.me/message/6VJKPERNMSEIF1?src=qr" target="_blank" class="glass-btn p-3.5 sm:p-4 rounded-2xl flex items-center justify-center gap-3 text-emerald-400">
                         <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                         <span class="orbitron text-xs font-bold tracking-wider">WHATSAPP</span>
                     </a>
 
+                    <!-- Telegram -->
                     <a href="https://t.me/deepaakai" target="_blank" class="glass-btn p-3.5 sm:p-4 rounded-2xl flex items-center justify-center gap-3 text-cyan-400">
                         <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.604.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.831.966z"/></svg>
                         <span class="orbitron text-xs font-bold tracking-wider">TELEGRAM</span>
                     </a>
 
+                    <!-- Instagram -->
                     <a href="https://www.instagram.com/deepaak.ai" target="_blank" class="glass-btn p-3.5 sm:p-4 rounded-2xl flex items-center justify-center gap-3 text-pink-400">
                         <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         <span class="orbitron text-xs font-bold tracking-wider">INSTAGRAM</span>
                     </a>
 
+                    <!-- X (Twitter) -->
                     <a href="https://x.com/deepaakai" target="_blank" class="glass-btn p-3.5 sm:p-4 rounded-2xl flex items-center justify-center gap-3 text-zinc-200">
                         <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         <span class="orbitron text-xs font-bold tracking-wider">X.COM</span>
                     </a>
 
+                    <!-- Gmail (delhipdeepak@gmail.com) -->
                     <a href="mailto:delhipdeepak@gmail.com" class="glass-btn p-3.5 sm:p-4 rounded-2xl flex items-center justify-center gap-3 text-red-400 hover:text-red-300 hover:border-red-500/50 hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] col-span-2">
                         <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                         <span class="orbitron text-xs font-bold tracking-wider">GMAIL</span>
@@ -199,6 +214,7 @@
             </div>
         </div>
 
+        <!-- SERVICES SECTION -->
         <div class="mt-20 lg:mt-28">
             <div class="flex items-center gap-3 mb-8">
                 <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
@@ -206,6 +222,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Hardware & Remote Systems -->
                 <div class="glass p-7 sm:p-8 rounded-3xl border-t-2 border-cyan-400/40 hover:border-cyan-400 transition-all">
                     <div class="text-cyan-400 mb-4">
                         <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -217,6 +234,7 @@
                     <span class="text-[11px] mono text-cyan-400 font-bold uppercase tracking-wider">● Remote & On-Prem Support</span>
                 </div>
 
+                <!-- Digital Operations & Verification -->
                 <div class="glass p-7 sm:p-8 rounded-3xl border-t-2 border-purple-400/40 hover:border-purple-400 transition-all">
                     <div class="text-purple-400 mb-4">
                         <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -228,6 +246,7 @@
                     <span class="text-[11px] mono text-purple-400 font-bold uppercase tracking-wider">● 100% Compliance Adherence</span>
                 </div>
 
+                <!-- Catalog & Data Engineering -->
                 <div class="glass p-7 sm:p-8 rounded-3xl border-t-2 border-emerald-400/40 hover:border-emerald-400 transition-all">
                     <div class="text-emerald-400 mb-4">
                         <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7zm0 5h16M9 4v16"></path></svg>
@@ -241,6 +260,7 @@
             </div>
         </div>
 
+        <!-- PAYMENT & CLEARANCE TERMINAL -->
         <div class="mt-20 lg:mt-28 glass p-8 sm:p-12 lg:p-16 rounded-[2.5rem] text-center max-w-xl mx-auto border-white/10 relative overflow-hidden">
             <div class="absolute -top-24 -left-24 w-52 h-52 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -right-24 w-52 h-52 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -248,26 +268,32 @@
             <h3 class="orbitron text-cyan-400 text-xl sm:text-2xl font-bold mb-2 uppercase tracking-widest">Support Operations</h3>
             <p class="text-zinc-400 text-xs sm:text-sm mb-8">Instant Settlement & Clearance Terminal</p>
 
+            <!-- UPI QR Box -->
             <div class="bg-white p-3.5 rounded-2xl inline-block mb-5 shadow-2xl">
                 <img src="qr.png" alt="UPI QR" class="w-48 h-48 sm:w-56 sm:h-56 object-contain">
             </div>
             
-            <p class="text-zinc-200 text-sm sm:text-base mono font-bold mb-6 tracking-widest bg-zinc-900/80 py-2.5 px-5 rounded-xl inline-block border border-white/10">
-                deepaakai@dbs
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-3.5 justify-center items-center mb-5">
-                <button onclick="copyUPI(this)" class="w-full sm:w-auto glass px-8 py-4 rounded-xl text-xs font-bold orbitron text-emerald-400 border-emerald-500/40 hover:border-emerald-400 active:scale-95 transition-all">
-                    COPY UPI ID
+            <!-- Compact UPI ID Box with Smaller Copy Button -->
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <span class="text-zinc-200 text-xs sm:text-sm mono font-bold tracking-wider bg-zinc-900/90 py-2 px-3.5 rounded-xl border border-white/10">
+                    deepaakai@dbs
+                </span>
+                <button onclick="copyUPI(this)" class="glass px-3 py-2 rounded-xl text-[10px] font-bold orbitron text-emerald-400 border-emerald-500/40 hover:border-emerald-400 active:scale-95 transition-all">
+                    COPY
                 </button>
-                <a href="https://forms.gle/naPVHHoPwB7pseASA" target="_blank" class="w-full sm:w-auto glass px-8 py-4 rounded-xl text-xs font-bold orbitron text-cyan-400 border-cyan-500/40 hover:border-cyan-400 active:scale-95 transition-all inline-flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
-                    VERIFY PAYMENT FORM
+            </div>
+
+            <!-- Direct UPI App Launcher (PhonePe / GPay / Paytm) -->
+            <div class="mb-5">
+                <a href="upi://pay?pa=deepaakai@dbs&pn=Deepaak%20Kumar&cu=INR" class="w-full glass-btn py-3.5 px-5 rounded-2xl flex items-center justify-center gap-3 text-emerald-400 hover:text-emerald-300 border-emerald-500/30 hover:border-emerald-400 transition-all">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                    <span class="orbitron text-xs font-bold tracking-wider">OPEN UPI APP (PHONEPE / PAYTM / GPAY)</span>
                 </a>
             </div>
 
-            <div class="pt-5 border-t border-white/10">
-                <a href="https://paypal.me/DPaswan198" target="_blank" class="w-full glass-btn py-4 px-6 rounded-2xl flex items-center justify-center gap-3.5 text-blue-400 hover:text-blue-300 border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.35)] transition-all">
+            <!-- PROMINENT BIG PAYPAL BUTTON (Right Above Verification Form) -->
+            <div class="mb-4">
+                <a href="https://paypal.me/DPaswan198" target="_blank" class="w-full glass-btn py-4 px-6 rounded-2xl flex items-center justify-center gap-4 text-blue-400 hover:text-blue-300 border-blue-500/40 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.35)] transition-all">
                     <svg class="w-7 h-7 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.004.47 5.374.152 5.81.152h6.848c3.481 0 5.897 1.55 5.897 4.606 0 2.29-1.397 4.298-3.568 5.12 2.68.796 3.666 3.093 3.197 5.753-.548 3.111-2.996 4.956-6.626 4.956H8.223a.64.64 0 0 1-.633-.538l-.514-2.712zm1.264-6.685h2.844c2.19 0 3.79-.982 4.144-2.992.357-2.028-.908-3.003-3.1-3.003H8.973l-.633 6z"/></svg>
                     <div class="text-left">
                         <div class="orbitron text-xs font-black tracking-widest text-white">PAYPAL INTERNATIONAL (USD)</div>
@@ -275,55 +301,73 @@
                     </div>
                 </a>
             </div>
-        </div>
 
-        <div class="mt-12 max-w-xl mx-auto glass p-6 sm:p-8 rounded-3xl border border-white/10 text-left">
-            <div class="flex items-center gap-2.5 mb-5">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                <h4 class="orbitron text-xs sm:text-sm font-bold text-white tracking-widest uppercase">
-                    Terms & Settlement Guidelines / नियम व शर्तें
-                </h4>
-            </div>
-
-            <div class="space-y-4 text-xs text-zinc-300 leading-relaxed font-sans">
-                <div class="border-b border-white/5 pb-3">
-                    <div class="flex items-center gap-2 text-emerald-400 font-bold mono mb-1">
-                        <span>[01]</span>
-                        <span>100% SATISFACTION FIRST</span>
-                    </div>
-                    <p class="text-zinc-200">Release payment only after job completion and your complete verification & satisfaction.</p>
-                    <p class="text-zinc-400 mt-0.5">अपना काम पूरा होने और उसकी पूर्ण पुष्टि व संतुष्टि के बाद ही भुगतान करें।</p>
-                </div>
-
-                <div class="border-b border-white/5 pb-3">
-                    <div class="flex items-center gap-2 text-cyan-400 font-bold mono mb-1">
-                        <span>[02]</span>
-                        <span>MULTI-CURRENCY SUPPORT (INR / USD)</span>
-                    </div>
-                    <p class="text-zinc-200">Payments are accepted seamlessly in both Indian Rupees (UPI) and US Dollars (PayPal).</p>
-                    <p class="text-zinc-400 mt-0.5">भुगतान भारतीय रुपये (UPI) अथवा अमेरिकी डॉलर (PayPal) दोनों में मान्य है।</p>
-                </div>
-
-                <div class="border-b border-white/5 pb-3">
-                    <div class="flex items-center gap-2 text-purple-400 font-bold mono mb-1">
-                        <span>[03]</span>
-                        <span>DIRECT BANK TRANSFER</span>
-                    </div>
-                    <p class="text-zinc-200">For direct IMPS/NEFT bank account details, please connect directly on WhatsApp.</p>
-                    <p class="text-zinc-400 mt-0.5">सीधे बैंक खाते में ट्रांसफर हेतु अकाउंट नंबर व IFSC के लिए WhatsApp पर संपर्क करें।</p>
-                </div>
-
-                <div>
-                    <div class="flex items-center gap-2 text-yellow-400 font-bold mono mb-1">
-                        <span>[04]</span>
-                        <span>RECEIPT & SCREENSHOT VERIFICATION</span>
-                    </div>
-                    <p class="text-zinc-200">Upload your payment confirmation screenshot via the 'Verify Payment Form' for instant clearance.</p>
-                    <p class="text-zinc-400 mt-0.5">भुगतान के पश्चात रसीद या स्क्रीनशॉट 'Verify Payment Form' में अवश्य अपलोड करें।</p>
-                </div>
+            <!-- Verify Payment Form Button -->
+            <div class="pt-2">
+                <a href="https://forms.gle/naPVHHoPwB7pseASA" target="_blank" class="w-full glass py-3.5 px-6 rounded-2xl text-xs font-bold orbitron text-cyan-400 border-cyan-500/40 hover:border-cyan-400 active:scale-95 transition-all inline-flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+                    VERIFY PAYMENT FORM
+                </a>
             </div>
         </div>
 
+        <!-- REDESIGNED SLEEK SERVICE SLA & PROTOCOLS (NO BORING TERMS) -->
+        <div class="mt-20 lg:mt-28 max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <h3 class="orbitron text-xl sm:text-2xl text-white font-bold tracking-wider uppercase">Operational Protocol & Settlement</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                
+                <!-- Protocol 01 -->
+                <div class="glass p-5 rounded-2xl border-l-2 border-emerald-400/80 hover:border-emerald-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="mono text-[11px] font-bold text-emerald-400 uppercase tracking-wider">Protocol // 01</span>
+                        <span class="text-[10px] mono text-zinc-500 uppercase">Verification</span>
+                    </div>
+                    <h5 class="orbitron text-xs font-bold text-white mb-1 uppercase tracking-wide">100% Satisfaction First</h5>
+                    <p class="text-zinc-300 text-xs leading-relaxed mb-1">Release payments strictly after work delivery, testing, and full verification.</p>
+                    <p class="text-zinc-500 text-[11px] leading-relaxed">काम पूरा होने और उसकी पूर्ण संतुष्टि के बाद ही भुगतान करें।</p>
+                </div>
+
+                <!-- Protocol 02 -->
+                <div class="glass p-5 rounded-2xl border-l-2 border-cyan-400/80 hover:border-cyan-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="mono text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Protocol // 02</span>
+                        <span class="text-[10px] mono text-zinc-500 uppercase">Currencies</span>
+                    </div>
+                    <h5 class="orbitron text-xs font-bold text-white mb-1 uppercase tracking-wide">Multi-Currency Routing</h5>
+                    <p class="text-zinc-300 text-xs leading-relaxed mb-1">Domestic settlements via UPI (INR) & global settlements via PayPal (USD).</p>
+                    <p class="text-zinc-500 text-[11px] leading-relaxed">भारतीय रुपये (UPI) और डॉलर (PayPal) दोनों में भुगतान मान्य है।</p>
+                </div>
+
+                <!-- Protocol 03 -->
+                <div class="glass p-5 rounded-2xl border-l-2 border-purple-400/80 hover:border-purple-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="mono text-[11px] font-bold text-purple-400 uppercase tracking-wider">Protocol // 03</span>
+                        <span class="text-[10px] mono text-zinc-500 uppercase">Banking</span>
+                    </div>
+                    <h5 class="orbitron text-xs font-bold text-white mb-1 uppercase tracking-wide">Direct Bank Transfer</h5>
+                    <p class="text-zinc-300 text-xs leading-relaxed mb-1">For IMPS/NEFT routing, connect directly via WhatsApp to request official bank details.</p>
+                    <p class="text-zinc-500 text-[11px] leading-relaxed">सीधे बैंक खाते में ट्रांसफर हेतु विवरण के लिए WhatsApp पर संपर्क करें।</p>
+                </div>
+
+                <!-- Protocol 04 -->
+                <div class="glass p-5 rounded-2xl border-l-2 border-yellow-400/80 hover:border-yellow-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="mono text-[11px] font-bold text-yellow-400 uppercase tracking-wider">Protocol // 04</span>
+                        <span class="text-[10px] mono text-zinc-500 uppercase">Clearance</span>
+                    </div>
+                    <h5 class="orbitron text-xs font-bold text-white mb-1 uppercase tracking-wide">Receipt Verification</h5>
+                    <p class="text-zinc-300 text-xs leading-relaxed mb-1">Submit transaction receipts through the 'Verify Payment Form' for instant ledger clearance.</p>
+                    <p class="text-zinc-500 text-[11px] leading-relaxed">भुगतान के तुरंत बाद पुष्टि रसीद फॉर्म में अवश्य जमा करें।</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
         <footer class="text-center py-16 text-zinc-600 orbitron text-[10px] tracking-[0.4em] uppercase">
             © DEEPAAK KUMAR // POLYMATH OPS V4.0.0
         </footer>
@@ -403,10 +447,8 @@ function startLoadingPipeline() {
     if (isStarted) return;
     isStarted = true;
 
-    // 1. Unlock Audio on user gesture
     initAudio();
 
-    // 2. Hide Prompt & Reveal Progress Bar
     document.getElementById('tap-prompt').classList.add('hidden');
     document.getElementById('load-box').classList.remove('hidden');
 
@@ -429,7 +471,6 @@ function startLoadingPipeline() {
         progressBar.style.width = progress + "%";
         loadPct.textContent = progress + "%";
 
-        // Sound trigger on steps
         if (progress % 12 === 0 || progress > 90) {
             playTechBeep(550 + progress * 4);
         }
